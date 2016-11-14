@@ -23,7 +23,10 @@ from mininext.cli import CLI
 from mininext.net import MiniNExT
 from mininet.link import Link, TCLink
 
-from topo import QuaggaTopo
+from p4_mininet.p4_mininet import P4Switch, P4Host
+
+
+from topo import QuaggaP4Topo
 
 net = None
 
@@ -32,11 +35,11 @@ def startNetwork():
     "instantiates a topo, then starts the network and prints debug information"
 
     info('** Creating Quagga network topology\n')
-    topo = QuaggaTopo()
+    topo = QuaggaP4Topo()
 
     info('** Starting the network\n')
     global net
-    net = MiniNExT(topo, controller=None)
+    net = MiniNExT(topo, controller=None, switch=P4Switch)
 
     info('** Adding the controller\n')
     # Adding the remote controller

@@ -12,12 +12,13 @@ from collections import namedtuple
 QuaggaHost = namedtuple("QuaggaHost", "name ip loIP")
 net = None
 
+_THRIFT_BASE_PORT = 22222
 
-class QuaggaTopo(Topo):
+class QuaggaP4Topo(Topo):
 
     "Creates a topology of Quagga routers"
 
-    def __init__(self):
+    def __init__(self, sw_path, json_path):
         """Initialize a Quagga topology with 5 routers, configure their IP
            addresses, loop back interfaces, and paths to their private
            configuration directories."""
@@ -44,7 +45,7 @@ class QuaggaTopo(Topo):
 
 
         # Add the switch for the SWIFTED router
-        ovs_switch = self.addSwitch('s1', dpid='1')
+        p4_switch = self.addSwitch('s1', dpid='1', sw_path=sw_path, json_path=json_path, thrift_port=_THRIFT_BASE_PORT)
 
 
         # Setup each Quagga router, add a link between it and the IXP fabric
@@ -89,7 +90,7 @@ class QuaggaTopo(Topo):
                               inUTSNamespace=True)
 
         # Attach the quaggaContainer to the IXP Fabric Switch
-        self.addLink('r1', ovs_switch, intfName1="s1", intfName2='r1-ovs')
-        self.addLink('r2', ovs_switch, intfName1="s1", intfName2='r2-ovs')
-        self.addLink('r3', ovs_switch, intfName1="s1", intfName2='r3-ovs')
-        self.addLink('r4', ovs_switch, intfName1="s1", intfName2='r4-ovs')
+        self.addLink('r1', p4_switch, intfName1="s1", intfName2='r1-ovs')
+        self.addLink('r2', p4_switch, intfName1="s1", intfName2='r2-ovs')
+        self.addLink('r3', p4_switch, intfName1="s1", intfName2='r3-ovs')
+        self.addLink('r4', p4_switch, intfName1="s1", intfName2='r4-ovs')
