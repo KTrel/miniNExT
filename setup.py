@@ -12,7 +12,7 @@ setup(
     description='Extensions to Mininet (MiniNExT)',
     author='Brandon Schlinker',
     author_email='bschlink@usc.edu',
-    packages=[ 'mininext', 'mininext.services' ],
+    packages=[ 'mininext', 'mininext.services', 'p4' ],
     long_description="""
         MiniNExT (MiniNet ExTended) is a layer of extensions
         on top of the existing Mininet software package. We are working
