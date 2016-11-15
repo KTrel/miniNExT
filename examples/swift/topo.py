@@ -90,7 +90,7 @@ class QuaggaP4Topo(Topo):
                               inUTSNamespace=True)
 
         # Attach the quaggaContainer to the IXP Fabric Switch
-        self.addLink('r1', p4_switch, intfName1="s1", intfName2='r1-ovs')
-        self.addLink('r2', p4_switch, intfName1="s1", intfName2='r2-ovs')
-        self.addLink('r3', p4_switch, intfName1="s1", intfName2='r3-ovs')
-        self.addLink('r4', p4_switch, intfName1="s1", intfName2='r4-ovs')
+        self.addLink('r1', p4_switch, intfName1="s1", intfName2='r1-p4switch')
+        self.addLink('r2', p4_switch, intfName1="s1", intfName2='r2-p4switch')
+        self.addLink('r3', p4_switch, intfName1="s1", intfName2='r3-p4switch')
+        self.addLink('r4', p4_switch, intfName1="s1", intfName2='r4-p4switch')
